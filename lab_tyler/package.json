@@ -1,0 +1,11 @@
+{
+  "name": "lab08",
+  "version": "1.0.0",
+  "description": "lab08:rest",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Tyler Confalone",
+  "license": "MIT"
+}
