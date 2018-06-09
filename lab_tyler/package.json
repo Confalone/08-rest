@@ -7,5 +7,12 @@
     "test": "jest"
   },
   "author": "Tyler Confalone",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "Confalone"
+  },
+  "dependencies": {
+    "jest": "^23.1.0"
+  }
 }
