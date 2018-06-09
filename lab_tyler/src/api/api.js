@@ -17,6 +17,21 @@ router.get('/', (req,res) => {
   res.end();
 });
 
+router.get('/api/v1/ducks', (req, res) => {
+
+  const id = req.query.id;
+
+  if(id) {
+  res.statusCode = 200;
+  let message = `ID: ${req.query.id}`;
+  res.write(message);
+  } else {
+    res.statusCode = 400;
+    res.statusMessage = 'bad request';
+  }
+  res.end();
+});
+
 /**
  * POST Route (/data)
  * Accepts a JSON object and simply regurgitates it back to the browser
