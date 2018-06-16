@@ -1,9 +1,7 @@
 'use strict';
 
-// First Party Modules
 let http = require('http');
 
-// Our modules
 const router = require('./lib/router.js');
 const api = require('./api/api.js');
 

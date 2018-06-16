@@ -17,14 +17,25 @@ router.get('/', (req,res) => {
   res.end();
 });
 
+router.get('/api/v1/puppys', (req, res) => {
+
+  res.write('should return all dogs');
+  res.end();
+});
+
+router.get('/api/v1/puppys?id', (req, res) => {
+  res.write('arf arf');
+  res.end();
+});
+
 router.get('/api/v1/ducks', (req, res) => {
 
   const id = req.query.id;
 
   if(id) {
-  res.statusCode = 200;
-  let message = `ID: ${req.query.id}`;
-  res.write(message);
+    res.statusCode = 200;
+    let message = `ID: ${req.query.id}`;
+    res.write(message);
   } else {
     res.statusCode = 400;
     res.statusMessage = 'bad request';
