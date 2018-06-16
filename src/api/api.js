@@ -2,6 +2,7 @@
 
 const router = require('../lib/router.js');
 
+
 /**
  * GET Route (/)
  * Accepts an optional "name" query string parameter and says Hello
@@ -12,47 +13,58 @@ const router = require('../lib/router.js');
 router.get('/', (req,res) => {
   res.statusCode = 200;
   res.statusMessage = 'OK';
+
   let name = req.query.name || '';
   res.write(`Hello ${name}`);
   res.end();
 });
 
 router.get('/api/v1/puppys', (req, res) => {
-
-  res.write('should return all dogs');
-  res.end();
-});
-
-router.get('/api/v1/puppys?id', (req, res) => {
-  res.write('arf arf');
-  res.end();
-});
-
-router.get('/api/v1/ducks', (req, res) => {
-
+  
   const id = req.query.id;
-
+  
   if(id) {
     res.statusCode = 200;
-    let message = `ID: ${req.query.id}`;
-    res.write(message);
+    res.write(`ID: ${id}`);
   } else {
     res.statusCode = 400;
-    res.statusMessage = 'bad request';
+    res.write(`Sorry go that way`);
   }
   res.end();
 });
 
-/**
- * POST Route (/data)
- * Accepts a JSON object and simply regurgitates it back to the browser
- * test with httpie:
- *     echo '{"title":"Go Home","content":"foobar"}' | http post http://localhost:8080/data
- */
-router.post('/data', (req,res) => {
+router.post('/api/v1/puppys', (req, res) => {
   res.statusCode = 200;
   res.statusMessage = 'OK';
-  res.write( JSON.stringify(req.body) );
+  res.write(JSON.stringify(req.body));
+  res.end();
+});
+
+router.put('/api/v1/puppys', (req, res) => {  
+  const id = req.url.query.id;
+  
+  if(id) {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.write(JSON.stringify(req.body));
+  } else {
+    res.statusCode = 400;
+    res.write(`Sorry go that way`);
+  }
+  res.end();
+});
+
+router.delete('/api/v1/puppys', (req, res) => {  
+  const id = req.query.id;
+  
+  if(id) {
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+    res.write(`ID: ${id} has been deleted, thank you.`));
+  } else {
+    res.statusCode = 400;
+    res.write(`Sorry, nothing was deleted.`);
+  }
   res.end();
 });
 

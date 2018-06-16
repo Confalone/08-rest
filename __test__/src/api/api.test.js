@@ -1,18 +1,49 @@
 'use strict';
 
 const superagent = require('superagent');
-
+const app = require('./../../../src/api/api.js');
 describe ('app', () => {
-    it ('should return id for GET /?id=foo', () => {
-        // const expected = 'ID: 123';
+  beforeAll(() => {
+    app.start(3000);
+  });
+  afterAll(() => {
+    app.stop();
+  });
 
-        // actual = false;
+  it ('returns ID for GET /?id=foo', () => {
+        
+    return superagent
+      .get('http:local//3000/v1/api/puppys=ID:123')
+      .then(data => {
+        expect(data.text).toBe('ID:123');
+      });
+  });
 
-        // expect (actual).toBe(expected);
+  it('returns the body content on a POST request.', ()=> {
+    let thing = {'ID':'123'};
+    return superagent
+      .post('http:local//3000/v1/api/puppys')
+      .send (thing)
+      .then (data => {
+        expect(data.text).toBe(`{'ID:123'}`);
+      });
+  });
+  it ('returns bad request 400 when not given a query', () => {
 
-        superagent
-        .get('http://localhost:3000/api/v1/ducks?id=123')
-        .then(data => console.log(data));
-        .catch(err => console.error(err));
-    });
+    return superagent
+      .get('http:local//3000/v1/api/puppys')
+      .catch(err => {
+        expect(err.response.text).toBe('Bad Request, needs a query');
+      });
+  });
+
+  it ('returns bad request 400 when not given a body', () => {
+
+    return superagent
+      .get('http:local//3000/v1/api/puppys')
+      .catch(err => {
+        expect(err.response.text).toBe('Bad Request, needs a body.');
+        expect(err.status).toBe(400);
+      });
+  });
 });
