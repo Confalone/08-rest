@@ -1,48 +1,49 @@
 'use strict';
 
 const superagent = require('superagent');
-const app = require('./../../../src/api/api.js');
-describe ('app', () => {
-  beforeAll(() => {
-    app.start(3000);
-  });
-  afterAll(() => {
-    app.stop();
-  });
+const app = require('./../../../src/app.js');
 
-  it ('returns ID for GET /?id=foo', () => {
+describe('app', () => {
+//   beforeAll(app.start);
+  afterAll(app.stop);
+
+
+  it('returns ID for GET /?id=foo', () => {
         
     return superagent
-      .get('http:local//3000/v1/api/puppys=ID:123')
+      .get('http://localhost:3000/api/v1/puppys?id=foo')
       .then(data => {
-        expect(data.text).toBe('ID:123');
+        console.log('DATA RESPOMSE ::' , data.text);
+        expect(data.text).toBe('ID: foo');
       });
   });
 
   it('returns the body content on a POST request.', ()=> {
-    let thing = {'ID':'123'};
+    let thing = {ID:123};
     return superagent
-      .post('http:local//3000/v1/api/puppys')
+      .post('http://localhost:3000/api/v1/puppys')
       .send (thing)
       .then (data => {
-        expect(data.text).toBe(`{'ID:123'}`);
+        console.log('data', data.text);
+        expect(data.text).toBe({'ID':123});
       });
   });
-  it ('returns bad request 400 when not given a query', () => {
+  
+  it('returns bad request 400 when not given a query', () => {
 
     return superagent
-      .get('http:local//3000/v1/api/puppys')
+      .get('http://localhost:3000/api/v1/puppys')
       .catch(err => {
-        expect(err.response.text).toBe('Bad Request, needs a query');
+        expect(err.response.text).toBe('Sorry go that way');
       });
   });
 
-  it ('returns bad request 400 when not given a body', () => {
+  it('returns bad request 400 when not given a body', () => {
 
     return superagent
-      .get('http:local//3000/v1/api/puppys')
+      .get('http://localhost:3000/api/v1/puppys')
       .catch(err => {
-        expect(err.response.text).toBe('Bad Request, needs a body.');
+        expect(err.response.text).toBe('Sorry go that way');
         expect(err.status).toBe(400);
       });
   });
