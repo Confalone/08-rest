@@ -25,7 +25,7 @@ describe('app', () => {
       .send (thing)
       .then (data => {
         console.log('data', data.text);
-        expect(data.text).toBe({'ID':123});
+        expect(JSON.parse(data.text)).toEqual({'ID':123});
       });
   });
   
