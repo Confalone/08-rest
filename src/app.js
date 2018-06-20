@@ -3,7 +3,7 @@
 let http = require('http');
 
 const router = require('./lib/router.js');
-const api = require('./api/api.js');
+require('./api/api.js');
 
 // Flag to know if we are up and going
 let isRunning = false;
