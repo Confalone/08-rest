@@ -28,7 +28,7 @@ router.get('/api/v1/puppys', (req, res) => {
     res.write(`ID: ${id}`);
   } else {
     res.statusCode = 400;
-    res.write(`Sorry go that way`);
+    res.write('Sorry go that way');
   }
   res.end();
 });
@@ -49,7 +49,7 @@ router.put('/api/v1/puppys', (req, res) => {
     res.write(JSON.stringify(req.body));
   } else {
     res.statusCode = 400;
-    res.write(`Sorry go that way`);
+    res.write('Sorry go that way');
   }
   res.end();
 });
@@ -60,10 +60,10 @@ router.delete('/api/v1/puppys', (req, res) => {
   if(id) {
     res.statusCode = 200;
     res.statusMessage = 'OK';
-    res.write(`ID: ${id} has been deleted, thank you.`));
+    res.write(`ID: ${id} has been deleted, thank you.`);
   } else {
     res.statusCode = 400;
-    res.write(`Sorry, nothing was deleted.`);
+    res.write('Sorry, nothing was deleted.');
   }
   res.end();
 });
