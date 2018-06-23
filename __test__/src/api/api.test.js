@@ -4,7 +4,7 @@ const superagent = require('superagent');
 const app = require('./../../../src/app.js');
 
 describe('app', () => {
-//   beforeAll(app.start);
+  // beforeAll(app.start);
   afterAll(app.stop);
 
 
