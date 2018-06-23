@@ -2,16 +2,21 @@
 
 const superagent = require('superagent');
 const app = require('./../../../src/app.js');
+require('dotenv').config();
+const apiURL = `http://localhost:${process.env.PORT}/api/v1/puppys`;
 
 describe('app', () => {
-  // beforeAll(app.start);
-  afterAll(app.stop);
-
+  beforeAll(() => {
+    app.start(process.env.PORT);
+  });
+  afterAll(() => {
+    app.stop();
+  });
 
   it('returns ID for GET /?id=foo', () => {
         
     return superagent
-      .get('http://localhost:3000/api/v1/puppys?id=foo')
+      .get(apiURL + '?id=foo')
       .then(data => {
         console.log('DATA RESPOMSE ::' , data.text);
         expect(data.text).toBe('ID: foo');
