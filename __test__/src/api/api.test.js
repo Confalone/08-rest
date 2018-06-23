@@ -26,7 +26,7 @@ describe('app', () => {
   it('returns the body content on a POST request.', ()=> {
     let thing = {ID:123};
     return superagent
-      .post('http://localhost:3000/api/v1/puppys')
+      .post(apiURL)
       .send (thing)
       .then (data => {
         console.log('data', data.text);
@@ -37,7 +37,7 @@ describe('app', () => {
   it('returns bad request 400 when not given a query', () => {
 
     return superagent
-      .get('http://localhost:3000/api/v1/puppys')
+      .get(apiURL)
       .catch(err => {
         expect(err.response.text).toBe('Sorry go that way');
       });
@@ -46,7 +46,7 @@ describe('app', () => {
   it('returns bad request 400 when not given a body', () => {
 
     return superagent
-      .get('http://localhost:3000/api/v1/puppys')
+      .get(apiURL)
       .catch(err => {
         expect(err.response.text).toBe('Sorry go that way');
         expect(err.status).toBe(400);
