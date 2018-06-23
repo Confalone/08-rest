@@ -3,7 +3,8 @@
 const superagent = require('superagent');
 const app = require('./../../../src/app.js');
 require('dotenv').config();
-const apiURL = `http://localhost:${process.env.PORT}/api/v1/puppys`;
+// const apiURL = `http://localhost:${process.env.PORT}/api/v1/puppys`;
+const apiURL = `http://127.0.0.1:${process.env.PORT}/api/v1/puppys`;
 
 describe('app', () => {
   beforeAll(() => {
