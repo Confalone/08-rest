@@ -3,19 +3,9 @@
 const {server} = require('../../../src/app.js');
 const supertest = require('supertest');
 const mockRequest = supertest(server);
-// const superagent = require('superagent');
-// const app = require('./../../../src/app.js');
-// require('dotenv').config();
-// const apiURL = `http://localhost:${process.env.PORT}/api/v1/puppys`;
 const apiURL = `/api/v1/puppys`;
 
 describe('app', () => {
-  // beforeAll(() => {
-  //   app.start(process.env.PORT);
-  // });
-  // afterAll(() => {
-  //   app.stop();
-  // });
 
   it('returns ID for GET /?id=foo', () => {
         
