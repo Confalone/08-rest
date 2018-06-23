@@ -22,5 +22,8 @@
     "superagent": "^3.8.3",
     "travis": "^0.1.1",
     "watch": "^1.0.2"
+  },
+  "devDependencies": {
+    "supertest": "^3.1.0"
   }
 }
